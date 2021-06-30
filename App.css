@@ -1,0 +1,52 @@
+body {
+  background-color: blanchedalmond;
+}
+
+.main_container {
+  display: grid;
+  place-items: center;
+}
+.main_container:nth-of-type(1) {
+  margin-top: 3em;
+}
+input {
+  text-align: center;
+  text-transform: capitalize;
+  padding: 1em;
+  outline: none;
+  border: 2px solid wheat;
+}
+p {
+  color: chocolate;
+  font-weight: bold;
+}
+button {
+  padding: 1em;
+  font-weight: bold;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  background-color: #f08080;
+  border-radius: 5px;
+  outline: none;
+}
+@media screen and (min-width: 500px) {
+  .main_container:nth-of-type(1) {
+    margin-top: 6em;
+  }
+  input {
+    width: 75%;
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 1.7rem;
+  }
+  button {
+    font-size: 1.5rem;
+  }
+}
+@media screen and(min-width:800px) {
+  html {
+    font-size: 23px;
+  }
+}
