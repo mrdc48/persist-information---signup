@@ -6,7 +6,8 @@ export default class Form extends React.Component {
     Name: '',
     Email: '',
     Number: '',
-    Role: ''
+    Role: '',
+    dataBase: []
   };
 
   showData = e => {
@@ -18,9 +19,29 @@ export default class Form extends React.Component {
 
   submitData = e => {
     e.preventDefault();
-    localStorage.setItem('data', JSON.stringify(this.state));
-    console.log('your information has been saved');
+    this.setState({
+      dataBase: [
+        ...this.state.dataBase,
+        this.state.Name,
+        this.state.Email,
+        this.state.Number,
+        this.state.Role
+      ]
+    });
   };
+
+  componentDidUpdate() {
+    localStorage.setItem('user', JSON.stringify(this.state.dataBase));
+  }
+  componentDidMount() {
+    let db = JSON.parse(localStorage.getItem('user'));
+    if (db) {
+      this.setState({
+        dataBase: db
+      });
+    }
+  }
+
   render() {
     return (
       <>
@@ -59,6 +80,12 @@ export default class Form extends React.Component {
           />
           <p>{this.state.Role}</p>
           <button onClick={this.submitData}>submit</button>
+          <h4>User Data List</h4>
+          {this.state.dataBase.map((item, idx) => (
+            <div key={idx} className="userData">
+              <p>{item}</p>
+            </div>
+          ))}
         </form>
       </>
     );
